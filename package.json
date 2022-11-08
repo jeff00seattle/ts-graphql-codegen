@@ -1,0 +1,33 @@
+{
+  "name": "ts-graphql-codegen",
+  "version": "1.0.0",
+  "description": "Generate TypeScript Definitions for GraphQL Queries with Apollo Codegen",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:only": "tsc",
+    "codegen:actlocal:app": "graphql-codegen --config ActLocal/config/app/actlocal_app_graphql_config.ts",
+    "codegen:actlocal:rule": "graphql-codegen --config ActLocal/config/rule/actlocal_rule_graphql_config.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jeff00seattle/ts-graphql-codegen.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jeff00seattle/ts-graphql-codegen/issues"
+  },
+  "homepage": "https://github.com/jeff00seattle/ts-graphql-codegen#readme",
+  "engines": {
+    "node": ">=14.17.0"
+  },
+  "dependencies": {
+    "@graphql-codegen/cli": "2.13.11",
+    "@graphql-codegen/client-preset": "^1.1.3",
+    "@graphql-codegen/introspection": "2.2.1",
+    "@graphql-codegen/typescript": "2.8.1",
+    "graphql": "^16.6.0"
+  }
+}

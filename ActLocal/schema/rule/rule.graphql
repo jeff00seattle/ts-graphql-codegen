@@ -1,0 +1,136 @@
+"""
+The `Date` scalar type represents a year, month and day in accordance with the
+[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) standard.
+"""
+scalar Date
+
+"""
+The `DateTime` scalar type represents a date and time. `DateTime` expects
+timestamps to be formatted in accordance with the
+[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) standard.
+"""
+scalar DateTime
+
+"""
+The `DateTimeOffset` scalar type represents a date, time and offset from UTC.
+`DateTimeOffset` expects timestamps to be formatted in accordance with the
+[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) standard.
+"""
+scalar DateTimeOffset
+
+scalar Decimal
+
+scalar GuidGraphType
+
+"""
+The `Milliseconds` scalar type represents a period of time represented as the total number of milliseconds.
+"""
+scalar Milliseconds
+
+type Mutation {
+  deleteRuleByAccountIdGuid(accountIdGuid: ID!): [ID!]!
+  deleteRuleById(id: ID!): MutationResultOutputGraphType!
+  deleteRuleByIdsList(idsList: [ID!]!): MutationResultOutputGraphType!
+  deleteRuleByRule(rule: RuleInputGraphType = null): MutationResultOutputGraphType!
+  deleteRuleByRulesList(rulesList: [RuleInputGraphType]!): MutationResultOutputGraphType!
+  deleteRuleBySiteNameAndExternalAccountId(siteName: String!, externalAccountId: Int!): [ID!]!
+  putRule(rule: RuleInputGraphType = null): MutationResultOutputGraphType!
+  putRulesList(rulesList: [RuleInputGraphType]!): MutationResultOutputGraphType!
+}
+
+type MutationResultOutputGraphType {
+  success: Boolean!
+}
+
+type Query {
+  getByMaxResults(maxResults: Int = null): [ID!]!
+  ruleById(id: ID!): RuleOutputGraphType
+  ruleCount: Int!
+  ruleCountByAccountIdGuid(accountIdGuid: ID!): Int!
+  ruleCountBySiteNameAndExternalAccountId(siteName: String!, externalAccountId: Int!): Int!
+  rulePKsByAccountIdGuid(accountIdGuid: ID!): [ID!]!
+  rulePKsByAccountIdGuidPaged(accountIdGuid: ID!, page: Int = null, pageSize: Int = null, sortOrder: SauceSortOrderInputGraphType = null): [ID!]!
+  rulePKsByAccountIdGuidPagedResultSetInfo(accountIdGuid: ID!, getOptions: SauceGetOptionsInputGraphType = null): RulePKsWithGetResultSetInfoOutputGraphType
+  rulePKsBySiteNameAndExternalAccountId(siteName: String!, externalAccountId: Int!): [ID!]!
+  rulePKsBySiteNameAndExternalAccountIdPaged(siteName: String!, externalAccountId: Int!, page: Int = null, pageSize: Int = null, sortOrder: SauceSortOrderInputGraphType = null): [ID!]!
+  rulePKsBySiteNameAndExternalAccountIdPagedResultSetInfo(siteName: String!, externalAccountId: Int!, getOptions: SauceGetOptionsInputGraphType = null): RulePKsWithGetResultSetInfoOutputGraphType
+  rulesByAccountIdGuid(accountIdGuid: ID!): [RuleOutputGraphType]!
+  rulesByAccountIdGuidPaged(accountIdGuid: ID!, page: Int = null, pageSize: Int = null, sortOrder: SauceSortOrderInputGraphType = null): [RuleOutputGraphType]!
+  rulesByAccountIdGuidPagedResultSetInfo(accountIdGuid: ID!, getOptions: SauceGetOptionsInputGraphType = null): RulesWithGetResultSetInfoOutputGraphType
+  rulesByIdsList(idsList: [ID!]!): [RuleOutputGraphType]!
+  rulesByIdsListNotFound(idsList: [ID!]!): RulesWithNotFoundOutputGraphType
+  rulesBySiteNameAndExternalAccountId(siteName: String!, externalAccountId: Int!): [RuleOutputGraphType]!
+  rulesBySiteNameAndExternalAccountIdPaged(siteName: String!, externalAccountId: Int!, page: Int = null, pageSize: Int = null, sortOrder: SauceSortOrderInputGraphType = null): [RuleOutputGraphType]!
+  rulesBySiteNameAndExternalAccountIdPagedResultSetInfo(siteName: String!, externalAccountId: Int!, getOptions: SauceGetOptionsInputGraphType = null): RulesWithGetResultSetInfoOutputGraphType
+}
+
+input RuleInputGraphType {
+  id: ID!
+  name: String!
+  siteName: String!
+  externalAccountId: Int!
+  accountIdGuid: ID!
+  accountType: String = null
+  filter: String!
+  action: String!
+  isActive: Boolean!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type RuleOutputGraphType {
+  accountIdGuid: ID!
+  accountType: String
+  action: String!
+  createdAt: DateTime!
+  externalAccountId: Int!
+  filter: String!
+  id: ID!
+  isActive: Boolean!
+  name: String!
+  siteName: String!
+  updatedAt: DateTime!
+}
+
+type RulePKsWithGetResultSetInfoOutputGraphType {
+  getResultSetInfo: SauceGetResultSetInfoOutputGraphType
+  results: [ID!]!
+}
+
+type RulesWithGetResultSetInfoOutputGraphType {
+  getResultSetInfo: SauceGetResultSetInfoOutputGraphType
+  results: [RuleOutputGraphType]!
+}
+
+type RulesWithNotFoundOutputGraphType {
+  notFound: [GuidGraphType]
+  results: [RuleOutputGraphType]!
+}
+
+input SauceGetOptionsInputGraphType {
+  page: Int!
+  pageSize: Int!
+  pageCountLookAheadHint: Int!
+  sortOrder: SauceSortOrderInputGraphType!
+}
+
+type SauceGetResultSetInfoOutputGraphType {
+  pageCountLookAheadResult: Int!
+}
+
+enum SauceSortOrderInputGraphType {
+  ASCENDING
+  DESCENDING
+
+  """The rows are sorted in ascending order"""
+  Ascending
+
+  """The rows are sorted in descending order"""
+  Descending
+}
+
+"""
+The `Seconds` scalar type represents a period of time represented as the total number of seconds.
+"""
+scalar Seconds
+
